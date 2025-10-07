@@ -13,7 +13,7 @@ export default function Category() {
   useEffect(() => {
     if (!topic) return;
 
-    const searchBooksByCategory = async () => {
+    const fetchBooksByCategory = async () => {
       try {
         setLoading(true);
         const data = await searchBooksByCategory(topic);
@@ -24,12 +24,12 @@ export default function Category() {
         setLoading(false);
       }
     };
-    searchBooksByCategory();
+    fetchBooksByCategory();
   }, [topic]);
 
   return (
     <div>
-      <h2>Catery: {topic}</h2>
+      <h2>Category: {topic}</h2>
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
       {!loading && !error && <BookList books={books} />}
