@@ -43,12 +43,12 @@ export default function Header() {
       <nav>
         <Link to="/">Home</Link>
         <Link to="/favorites">Favorites</Link>
-        {categories.map((cat) => (
+        {categories.map((catgrs) => (
           <Link
-            key={cat}
-            to={`/category/${encodeURIComponent(cat.toLowerCase())}`}
+            key={catgrs}
+            to={`/category/${encodeURIComponent(catgrs.toLowerCase())}`}
           >
-            {cat}
+            {catgrs}
           </Link>
         ))}
       </nav>
