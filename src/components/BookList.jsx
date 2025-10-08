@@ -5,7 +5,7 @@ export default function BookList({ books }) {
   return (
     <div>
       {books.map((bks) => (
-        <BookCard key={bks.id} book={b} />
+        <BookCard key={bks.id} book={bks} />
       ))}
     </div>
   );
