@@ -50,6 +50,7 @@ export default function BookDetails() {
         <img src={book.formats["image/jpeg"]} alt={book.title} />
       )}
       <p>Author: {book.authors?.length ? book.authors[0].name : "Unknown"}</p>
+      <p>Id in database: {book.id}</p>
       <p>Downloads: {book.download_count}</p>
       <p>Languages: {book.languages.join(", ")}</p>
       <p>Subjects: {book.subjects?.join(", ") || "Not found"}</p>
