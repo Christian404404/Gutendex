@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { searchBooksById } from "../utilities/gutenDexAPI";
+import { Button } from "@mui/material";
 
 export default function BookDetails() {
   const [book, setBook] = useState(null);
@@ -62,7 +63,7 @@ export default function BookDetails() {
       )}
       <br />
 
-      <button onClick={addFavorite}> Add to favorites</button>
+      <Button onClick={addFavorite}> Add to favorites</Button>
     </div>
   );
 }
