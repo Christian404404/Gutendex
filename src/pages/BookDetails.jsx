@@ -101,7 +101,10 @@ export default function BookDetails() {
             {book.title}
           </Typography>
           <Typography variant="subtitle1" color="text.secondary" gutterBottom>
-            Author: {book.authors?.length ? book.authors[0].name : "Unknown"}
+            Author:{" "}
+            {book.authors?.length
+              ? book.authors.map((a) => a?.name || "Unknown").join(", ")
+              : "Unknown"}
           </Typography>
           <Typography variant="body2" sx={{ mb: 1 }}>
             Id in database: {book.id}

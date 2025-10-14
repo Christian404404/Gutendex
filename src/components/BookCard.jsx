@@ -60,7 +60,9 @@ export default function BookCard({ book }) {
             whiteSpace: "nowrap",
           }}
         >
-          {book.authors?.length ? book.authors[0].name : "Uknown Author"}
+          {book.authors?.length
+            ? book.authors.map((a) => a?.name || "Unknown").join(", ")
+            : "Unknown"}
         </Typography>
       </CardContent>
 

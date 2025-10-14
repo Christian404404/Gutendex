@@ -9,7 +9,6 @@ import Home from "./pages/Home";
 import Category from "./pages/Category";
 import BookDetails from "./pages/BookDetails";
 import Favorites from "./pages/Favorites";
-// import "./index.css";
 
 const router = createBrowserRouter([
   {

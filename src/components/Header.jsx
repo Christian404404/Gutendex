@@ -8,7 +8,9 @@ import {
   Button,
   Box,
   Stack,
+  useMediaQuery,
 } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
 
 const categories = [
   "Fiction",
@@ -29,6 +31,7 @@ const categories = [
 export default function Header() {
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
+  const smallScreen = useMediaQuery("(max-width:1004px)");
 
   const handleSearch = (e) => {
     e.preventDefault();

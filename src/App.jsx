@@ -6,10 +6,7 @@ import {
   createTheme,
   CssBaseline,
   useMediaQuery,
-  // Container,
 } from "@mui/material";
-
-// import "./App.css";
 
 function App() {
   const userPrefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
