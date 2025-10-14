@@ -3,6 +3,14 @@ import { useSearchParams } from "react-router-dom";
 import { searchBooks } from "../utilities/gutenDexAPI";
 import BookList from "../components/BookList";
 
+import {
+  Container,
+  Typography,
+  CircularProgress,
+  Alert,
+  Box,
+} from "@mui/material";
+
 export default function Home() {
   const [params] = useSearchParams();
   const [books, setBooks] = useState([]);
@@ -30,11 +38,23 @@ export default function Home() {
   }, [search]);
 
   return (
-    <div>
-      <h2>{search ? `Search results for "${search}"` : "Search for a book"}</h2>
-      {loading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
+    <Container sx={{ py: 4 }}>
+      <Typography
+        variant="h4"
+        component="h1"
+        gutterBottom
+        textAlign="center"
+        sx={{ fontWeight: 600 }}
+      >
+        {search ? `Search results for "${search}"` : "Search for a book"}
+      </Typography>
+      {loading && (
+        <Box display="flex" justifyContent="center" mt={4}>
+          <CircularProgress />
+        </Box>
+      )}
+      {error && <Alert severity="error" sx={{ mt: 3 }}></Alert>}
       {!loading && !error && <BookList books={books} />}
-    </div>
+    </Container>
   );
 }

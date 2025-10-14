@@ -7,7 +7,7 @@ import {
   CardContent,
   Typography,
   Button,
-  CardActions,
+  Stack,
 } from "@mui/material";
 
 export default function BookCard({ book }) {
@@ -15,12 +15,12 @@ export default function BookCard({ book }) {
   return (
     <Card
       sx={{
-        width: 250,
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
         borderRadius: 2,
         boxShadow: 3,
+        maxWidth: 250,
         transition: "transform 0.2s",
         "&:hover": { transform: "scale(1.03)" },
       }}
@@ -29,26 +29,52 @@ export default function BookCard({ book }) {
         component="img"
         image={coverImage}
         alt={book.title}
-        sx={{ height: 300, objectFit: "cover" }}
+        sx={{
+          height: 300,
+          objectFit: "cover",
+          objectPosition: "top",
+        }}
       />
-      <CardContent>
-        <Typography variant="h6" gutterBottom noWrap>
+      <CardContent sx={{ flexGrow: 1 }}>
+        <Typography
+          gutterBottom
+          variant="h6"
+          component="div"
+          sx={{
+            fontSize: "1rem",
+            fontWeight: 600,
+            textOverflow: "ellipsis",
+            overflow: "hidden",
+            whiteSpace: "nowrap",
+          }}
+        >
           {book.title}
         </Typography>
-        <Typography variant="body2" color="text.secondary" noWrap>
+
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{
+            textOverflow: "ellipsis",
+            overflow: "hidden",
+            whiteSpace: "nowrap",
+          }}
+        >
           {book.authors?.length ? book.authors[0].name : "Uknown Author"}
         </Typography>
       </CardContent>
-      <CardActions sx={{ justifyContent: "center", pb: 1 }}>
+
+      <Stack direction="row" spacing={1} sx={{ p: 1 }}>
         <Button
           size="small"
           variant="contained"
           component={Link}
           to={`/book/${book.id}`}
+          fullWidth
         >
           Details
         </Button>
-      </CardActions>
+      </Stack>
     </Card>
   );
 }

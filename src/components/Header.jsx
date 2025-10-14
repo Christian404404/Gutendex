@@ -7,7 +7,7 @@ import {
   TextField,
   Button,
   Box,
-  MenuItem,
+  Stack,
 } from "@mui/material";
 
 const categories = [
@@ -40,9 +40,15 @@ export default function Header() {
 
   return (
     <>
-      <AppBar>
-        <Toolbar sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-          <Typography variant="h5" component="div">
+      <AppBar position="sticky" color="primary" elevation={1}>
+        <Toolbar sx={{ flexWrap: "wrap", gap: 2 }}>
+          <Typography
+            variant="h6"
+            component={Link}
+            to="/"
+            color="inherit"
+            sx={{ textDecoration: "none", fontWeight: "bold", flexGrow: 1 }}
+          >
             Gutendex - Free e-books
           </Typography>
           <Box
@@ -51,37 +57,59 @@ export default function Header() {
             sx={{ display: "flex", gap: 1 }}
           >
             <TextField
-              variant="outlined"
               size="small"
               placeholder="Search for books"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
+              variant="outlined"
+              sx={{
+                bgcolor: "background.paper",
+                borderRadius: 1,
+                width: { xs: 150, sm: 250, md: 300 },
+              }}
             />
             <Button type="submit" variant="contained" color="secondary">
               Search
             </Button>
           </Box>
-          <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap", mt: 1 }}>
-            <Button component={Link} to="/" color="inherit">
-              Home
-            </Button>
-            <Button component={Link} to="/favorites" color="inherit">
-              Favorites
-            </Button>
+
+          <Button component={Link} to="/" color="inherit">
+            Home
+          </Button>
+          <Button
+            component={Link}
+            to="/favorites"
+            color="inherit"
+            sx={{ textTransform: "none" }}
+          >
+            Favorites
+          </Button>
+        </Toolbar>
+
+        <Toolbar
+          variant="dense"
+          sx={{
+            overflowX: "auto",
+            whiteSpace: "nowrap",
+            bgcolor: "background.default",
+          }}
+        >
+          <Stack direction="row" spacing={1}>
             {categories.map((catgrs) => (
               <Button
                 key={catgrs}
                 component={Link}
                 to={`/category/${encodeURIComponent(catgrs.toLowerCase())}`}
+                size="small"
                 color="inherit"
+                sx={{ textTransform: "none" }}
               >
                 {catgrs}
               </Button>
             ))}
-          </Box>
+          </Stack>
         </Toolbar>
       </AppBar>
-      <Toolbar />
     </>
   );
 }
