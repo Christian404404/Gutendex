@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { searchBooks } from "../utilities/gutenDexAPI";
 import BookList from "../components/BookList";
@@ -9,6 +9,7 @@ import {
   CircularProgress,
   Alert,
   Box,
+  Button,
 } from "@mui/material";
 
 export default function Home() {
@@ -16,6 +17,9 @@ export default function Home() {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [page, setPage] = useState(1);
+  const [nextPage, setNextPage] = useState(null);
+  const [previousPage, setPreviousPage] = useState(null);
 
   const search = params.get("search") || "";
 
@@ -25,8 +29,10 @@ export default function Home() {
     const fetchBooks = async () => {
       try {
         setLoading(true);
-        const data = await searchBooks(search);
+        const data = await searchBooks(search, page);
         setBooks(data.results);
+        setNextPage(data.next);
+        setPreviousPage(data.previous);
       } catch (err) {
         setError("Something went wrong");
       } finally {
@@ -35,7 +41,7 @@ export default function Home() {
     };
 
     fetchBooks();
-  }, [search]);
+  }, [search, page]);
 
   return (
     <Container sx={{ py: 4 }}>
@@ -55,6 +61,28 @@ export default function Home() {
       )}
       {error && <Alert severity="error" sx={{ mt: 3 }}></Alert>}
       {!loading && !error && <BookList books={books} />}
+
+      {!loading && !error && books.length > 0 && (
+        <Box display="flex" justifyContent="center" sx={{ mt: 4, gap: 2 }}>
+          <Button
+            variant="contained"
+            disabled={!previousPage}
+            onClick={() => previousPage && setPage((prev) => prev - 1)}
+          >
+            Previous
+          </Button>
+
+          <Typography alignSelf="center">Page {page}</Typography>
+
+          <Button
+            variant="contained"
+            disabled={!nextPage}
+            onClick={() => nextPage && setPage((prev) => prev + 1)}
+          >
+            Next
+          </Button>
+        </Box>
+      )}
     </Container>
   );
 }

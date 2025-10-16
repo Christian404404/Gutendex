@@ -15,6 +15,9 @@ export default function Category() {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [page, setPage] = useState(1);
+  const [nextPage, setNextPage] = useState(null);
+  const [previousPage, setPreviousPage] = useState(null);
 
   const { topic } = useParams();
 
@@ -24,8 +27,10 @@ export default function Category() {
     const fetchBooksByCategory = async () => {
       try {
         setLoading(true);
-        const data = await searchBooksByCategory(topic);
+        const data = await searchBooksByCategory(topic, page);
         setBooks(data.results);
+        setNextPage(data.next);
+        setPreviousPage(data.previous);
       } catch (err) {
         setError("Something went wrong while fetching category books.");
       } finally {
@@ -33,7 +38,7 @@ export default function Category() {
       }
     };
     fetchBooksByCategory();
-  }, [topic]);
+  }, [topic, page]);
 
   return (
     <Container sx={{ py: 4 }}>
@@ -60,6 +65,12 @@ export default function Category() {
       )}
 
       {!loading && !error && <BookList books={books} />}
+
+      {!loading && !error && books.length > 0 && (
+        <Box display="flex" justifyContent="center" sx={{ mt: 4, gap: 2 }}>
+          <Button variant="contained"></Button>
+        </Box>
+      )}
     </Container>
   );
 }
