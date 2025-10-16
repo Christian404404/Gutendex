@@ -74,25 +74,6 @@ export default function Category() {
           nextPage={nextPage}
           previousPage={previousPage}
         ></PaginationControl>
-        // <Box display="flex" justifyContent="center" sx={{ mt: 4, gap: 2 }}>
-        //   <Button
-        //     variant="contained"
-        //     disabled={!previousPage}
-        //     onClick={() => previousPage && setPage((prev) => prev - 1)}
-        //   >
-        //     Previous
-        //   </Button>
-
-        //   <Typography alignSelf="center">Page {page}</Typography>
-
-        //   <Button
-        //     variant="contained"
-        //     disabled={!nextPage}
-        //     onClick={() => nextPage && setPage((prev) => prev + 1)}
-        //   >
-        //     Next
-        //   </Button>
-        // </Box>
       )}
     </Container>
   );
