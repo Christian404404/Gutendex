@@ -10,10 +10,22 @@ export default function BookList({ books }) {
     );
 
   return (
-    <Grid container spacing={2} justifyContent="center" sx={{ p: 2 }}>
+    <Grid container spacing={5} justifyContent="center" sx={{ p: 2 }}>
       {books.map((bks) => (
-        <Grid key={bks.id} size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
-          <BookCard key={bks.id} book={bks} />
+        <Grid
+          key={bks.id}
+          xs={12}
+          sm={6}
+          md={4}
+          lg={3}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            minWidth: 200,
+            maxWidth: 200,
+          }}
+        >
+          <BookCard book={bks} />
         </Grid>
       ))}
     </Grid>
