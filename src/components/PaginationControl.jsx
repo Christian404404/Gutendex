@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
+import { useTheme, Button, Typography, Paper, alpha } from "@mui/material";
 
 export default function PaginationControl({
   page,
@@ -7,13 +7,26 @@ export default function PaginationControl({
   previousPage,
 }) {
   if (!nextPage && !previousPage) return null;
-
+  const theme = useTheme();
   return (
-    <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      sx={{ mt: 4, gap: 2 }}
+    <Paper
+      elevation={3}
+      sx={{
+        position: "fixed",
+        bottom: 16,
+        left: "50%",
+        transform: "translateX(-50%)",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        gap: 2,
+        px: 3,
+        py: 1.5,
+        borderRadius: 3,
+        backgroundColor: alpha(theme.palette.background.paper, 0.65),
+        backdropFilter: "blur(8px)",
+        zIndex: 1400,
+      }}
     >
       <Button
         variant="contained"
@@ -34,6 +47,6 @@ export default function PaginationControl({
       >
         Next
       </Button>
-    </Box>
+    </Paper>
   );
 }
