@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { searchBooksByCategory } from "../utilities/gutenDexAPI";
 import BookList from "../components/BookList";
+import PaginationControl from "../components/PaginationControl.jsx";
 
 import {
   Container,
@@ -67,9 +68,31 @@ export default function Category() {
       {!loading && !error && <BookList books={books} />}
 
       {!loading && !error && books.length > 0 && (
-        <Box display="flex" justifyContent="center" sx={{ mt: 4, gap: 2 }}>
-          <Button variant="contained"></Button>
-        </Box>
+        <PaginationControl
+          page={page}
+          setPage={setPage}
+          nextPage={nextPage}
+          previousPage={previousPage}
+        ></PaginationControl>
+        // <Box display="flex" justifyContent="center" sx={{ mt: 4, gap: 2 }}>
+        //   <Button
+        //     variant="contained"
+        //     disabled={!previousPage}
+        //     onClick={() => previousPage && setPage((prev) => prev - 1)}
+        //   >
+        //     Previous
+        //   </Button>
+
+        //   <Typography alignSelf="center">Page {page}</Typography>
+
+        //   <Button
+        //     variant="contained"
+        //     disabled={!nextPage}
+        //     onClick={() => nextPage && setPage((prev) => prev + 1)}
+        //   >
+        //     Next
+        //   </Button>
+        // </Box>
       )}
     </Container>
   );

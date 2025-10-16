@@ -1,7 +1,8 @@
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { searchBooks } from "../utilities/gutenDexAPI";
 import BookList from "../components/BookList";
+import PaginationControl from "../components/PaginationControl.jsx";
 
 import {
   Container,
@@ -9,7 +10,6 @@ import {
   CircularProgress,
   Alert,
   Box,
-  Button,
 } from "@mui/material";
 
 export default function Home() {
@@ -63,25 +63,31 @@ export default function Home() {
       {!loading && !error && <BookList books={books} />}
 
       {!loading && !error && books.length > 0 && (
-        <Box display="flex" justifyContent="center" sx={{ mt: 4, gap: 2 }}>
-          <Button
-            variant="contained"
-            disabled={!previousPage}
-            onClick={() => previousPage && setPage((prev) => prev - 1)}
-          >
-            Previous
-          </Button>
+        <PaginationControl
+          page={page}
+          setPage={setPage}
+          nextPage={nextPage}
+          previousPage={previousPage}
+        ></PaginationControl>
+        // <Box display="flex" justifyContent="center" sx={{ mt: 4, gap: 2 }}>
+        //   <Button
+        //     variant="contained"
+        //     disabled={!previousPage}
+        //     onClick={() => previousPage && setPage((prev) => prev - 1)}
+        //   >
+        //     Previous
+        //   </Button>
 
-          <Typography alignSelf="center">Page {page}</Typography>
+        //   <Typography alignSelf="center">Page {page}</Typography>
 
-          <Button
-            variant="contained"
-            disabled={!nextPage}
-            onClick={() => nextPage && setPage((prev) => prev + 1)}
-          >
-            Next
-          </Button>
-        </Box>
+        //   <Button
+        //     variant="contained"
+        //     disabled={!nextPage}
+        //     onClick={() => nextPage && setPage((prev) => prev + 1)}
+        //   >
+        //     Next
+        //   </Button>
+        // </Box>
       )}
     </Container>
   );
