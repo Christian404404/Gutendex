@@ -10,18 +10,23 @@ import Category from "./pages/Category";
 import BookDetails from "./pages/BookDetails";
 import Favorites from "./pages/Favorites";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <App />,
+      children: [
+        { path: "/", element: <Home /> },
+        { path: "category/:topic", element: <Category /> },
+        { path: "book/:id", element: <BookDetails /> },
+        { path: "favorites", element: <Favorites /> },
+      ],
+    },
+  ],
   {
-    path: "/",
-    element: <App />,
-    children: [
-      { path: "/", element: <Home /> },
-      { path: "category/:topic", element: <Category /> },
-      { path: "book/:id", element: <BookDetails /> },
-      { path: "favorites", element: <Favorites /> },
-    ],
-  },
-]);
+    basename: "/Gutendex/",
+  }
+);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
