@@ -14,10 +14,7 @@ export default function BookList({ books }) {
       {books.map((bks) => (
         <Grid
           key={bks.id}
-          xs={12}
-          sm={6}
-          md={4}
-          lg={3}
+          size={{ xs: 12, sm: 6, md: 4, lg: 3 }}
           sx={{
             display: "flex",
             justifyContent: "center",

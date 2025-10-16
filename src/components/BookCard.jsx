@@ -34,11 +34,10 @@ export default function BookCard({ book }) {
           objectFit: "cover",
           objectPosition: "top",
           WebKitMaskImage:
-            "linear-gradient(to bottom, black 99%, transparent 100%)",
-          maskImage: "linear-gradient(to bottom, black 99%, transparent 100%)",
+            "linear-gradient(to bottom, black 97%, transparent 100%)",
+          maskImage: "linear-gradient(to bottom, black 97%, transparent 100%)",
           WebkitMaskRepeat: "no-repeat",
           WebkitMaskSize: "cover",
-          transition: "opacity 0.5 ease",
         }}
       />
       <CardContent sx={{ flexGrow: 1 }}>
