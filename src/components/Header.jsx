@@ -147,6 +147,7 @@ export default function Header() {
         <Toolbar
           variant="dense"
           sx={{
+            justifyContent: "center",
             overflowX: "auto",
             whiteSpace: "nowrap",
             bgcolor: "background.default",
