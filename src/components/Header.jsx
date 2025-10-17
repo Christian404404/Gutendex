@@ -148,12 +148,20 @@ export default function Header() {
           variant="dense"
           sx={{
             justifyContent: "center",
+
             overflowX: "auto",
             whiteSpace: "nowrap",
             bgcolor: "background.default",
           }}
         >
-          <Stack direction="row" spacing={1}>
+          <Stack
+            direction="row"
+            spacing={1}
+            sx={{
+              width: "100%",
+              justifyContent: "space-evenly",
+            }}
+          >
             {categories.map((catgrs) => (
               <Button
                 key={catgrs}
